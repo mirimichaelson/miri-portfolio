@@ -27,17 +27,23 @@ const expandedContent: React.FunctionComponent = () => {
         leaveFrom="translate-x-0"
         leaveTo="translate-x-full"
       >      
-        <div className={`right-0 bottom-0  m-auto p-20 absolute w-full rounded-xl h-[75vh] ${color}`}>hi
-          <div className="flex justify-end">
-            {activeBar.text}
+      <div className={`right-0 flex-col bottom-0 flex m-auto p-5  absolute w-full rounded-xl h-[75vh] text-[#ffebcd] ${color}`}>
+        <div className={`h-full w-full scrollbar-thin scrollbar-thumb-rounded-xl scrollbar-thumb-[#CD853F] overflow-scroll  rounded-xl h-[75vh] text-[#ffebcd] ${color}`}>
+          <div className={` bg-[#CD853F] opacity-30 p-5`}>
+          <div className="flex justify-between">          
+            <div className="shrink-0 font-bold text-lg">{activeBar.title}</div>
+            <div className="flex-none w-full justify-end overflow-scroll w-[20px] h-[20px]">
+              <Image
+                src={xIcon}
+                width={20}
+                height={20}
+                onClick={handleBarClick}
+                alt="Picture of the author"
+              />
+            </div>
+            </div>
             {activeBar.content}
-            <Image
-              src={xIcon}
-              width={20}
-              height={20}
-              onClick={handleBarClick}
-              alt="Picture of the author"
-            />
+            </div>
           </div>
         </div>
       </Transition>
