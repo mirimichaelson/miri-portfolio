@@ -145,7 +145,8 @@ export default function Home() {
           <SideBar title="professional experience and volunteering" content={experience} colour={`${sidePanelColour}`}/>
           <SideBar title="tech stack" content={stack} colour={`${sidePanelColour}`}/>
           <SideBar title="my journey & about me" content={aboutMeContent} colour={`${sidePanelColour}`}/>
-          <SideBar title="contact & downloadable cv" content={contactContent} colour={`${sidePanelColour}`}/>
+          {/* contact & downloadable cv */}
+          <SideBar title="contact" content={contactContent} colour={`${sidePanelColour}`}/>
         </div>
           <ExpandedContent/>
       </div>
