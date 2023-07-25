@@ -8,7 +8,7 @@ import { Transition } from '@headlessui/react'
 import { useActiveBarContext } from "../contexts/activeBar";
 import {activeBarinterface} from '../types/activeBarInterface'
 
-const expandedContent: React.FunctionComponent = () => {
+const ExpandedContent: React.FunctionComponent = () => {
   const [activeBar, setActiveBar] = useActiveBarContext()
   const color = 'bg-[#2e5468]'
 
@@ -67,4 +67,4 @@ const expandedContent: React.FunctionComponent = () => {
   )
 }
 
-export default expandedContent;
+export default ExpandedContent;
