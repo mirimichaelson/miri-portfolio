@@ -2,37 +2,152 @@
 
 import SideBar from './components/sidebar'
 import ExpandedContent from './components/expandedContent'
+// import miri from '../../public/miri.png'
+import logo from '../../public/logo.svg'
+import Image from 'next/image';
+import { useActiveBarContext } from './contexts/activeBar'
+import {activeBarinterface} from './types/activeBarInterface'
+
+const experience = `
+PROFESSIONAL EXPERIENCE
+
+SOFTWARE ENGINEER AT SLALOM BUILD
+September 2021 - Present
+
+Slalom Build is a global consultancy. 
+Worked in e-commerce, automotive, & aviation sectors. Technical experience includes: 
+- Creating cart pages, states & integration, product display pages,  search functionality and search product pages 
+- Mobile-first, fully responsive and fully tested code
+- Working closely with designers and utilising Figma. Using GraphQL. Giving bi-weekly demos to senior client stakeholder groups
+- Creating and leading the frontend for PoCs, including an interactive hospitality app & a chatbot that integrates genAI with a used car search
+- Competing in company-wide hackathons for game design and making a chatbot app with genAI that triages NHS patients and can reduce GP load. Reached the final & presented our game to global leadership in Atlanta
+Stack: React, TypeScript, GraphQL, Next, Node, Nest, TailwindCSS, & Jest 
+  
+FRONTEND SOFTWARE ENGINEER AT DARKTRACE
+Nov 2020 - September  2021
+
+Darktrace is a multi-award winning AI cyber security company. 
+- Accountable for the Model Editor page. Security teams use the Model Editor to tailor Darktrace's response to specific attack threats  (React)
+-  Created the Mitre Att&ck integration & data display page (JQuery)
+- Manipulated and displayed complex data sets, such as the 'Breach Log'.  The Breach Log displays all events that have triggered one of the models, and allow security teams to respond and inquire into the breach (JQuery)
+- Added the One-Click-Defeat. This is used to prevent certain breach types from triggering the model. 
+- Tested to prevent regression
+Stack: JQuery, React, ES6 JS, & HTML/CSS. 
+
+VOLUNTEERING
+
+Code First Girls
+May 2021 - August 2021 
+
+Taught an 8-week Web Development course to help women get into tech. 
+Taught classes on: HTML, CSS, responsiveness, vanilla JS.
+
+Codebar
+March 2021 - March 2022 
+
+Weekly mentoring for new developers, including debugging & teaching programming concepts.
+
+Code Your Future
+March 2022 - July 2022 
+
+Edu-buddy  for two women learning to code. Supported them and helped them out with coding homework as they completed the course.
+`
+
+const stack = `
+Experienced: 
+React, Javascript, Typescript, NextJS, JQuery, Tailwind, CSS, styled components, GraphQL, Jest
+
+Intermediate:
+Node
+
+Learning: 
+Python 
+`
+
+const aboutMeContent = `
+Whilst I've been a developer for 3 years, I started out as an English Lit grad, at the University of York.
+
+After graduating, I worked as an event manager for a year and a half, producing events at pop up spaces around London, and once even  at the Royal Albert Hall. It was an intense year, and led to a couple interesting moments (one instance was dragging a henry the hoover through Soho at 6am in the morning).
+
+Just before the pandemic I’d started teaching myself to code using Udemy. When the lockdowns began, I started learning full-time, and was grateful to join Makers Academy, a 4-month web development bootcamp.
+
+From there I have worked in a cyber security company and a consultancy. I’ve been in multiple industries, the finalist in hackathons, and have kept developing as an engineer.
+
+Bonus information about me:
+
+I live on a houseboat, and have a bunch of hobbies. Right now, I’m getting into aerial hoops. Other hobbies are (in no particular order): climbing, drawing, roller skating, ice skating, drinking great coffee, latin dancing, reading and generally travelling around new places :)
+`
+
+const contactContent = `
+You can get through to me at:
+
+
+email: miriammichaelson@gmail.com
+number: 07399627453`
 
 export default function Home() {
-  const content = `The standard Lorem Ipsum passage, used since the 1500s
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-  
-  Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-  
-  1914 translation by H. Rackham
-  "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
-  
-  Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-  "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-  
-  1914 translation by H. Rackham
-  "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
-  
-  `
+  const [activeBar, setActiveBar] = useActiveBarContext()
+
+  const bg = 'bg-[#f0d9c6]'
+  const header1 = 'text-[#e05d48]'
+  const header2 = 'text-[#e67456]'
+  const sidePanelColour = 'bg-[#778ce1]'
+
+  const overlayClick = () => {
+      if (activeBar.isActive) setActiveBar((activeBar: activeBarinterface) => ({...activeBar, isActive: false}))
+  }
 
   return (
-    <main className="flex min-h-screen h-screen items-center justify-between">
-      <div className='bg-[#FCC981] basis-1/2 h-full w-full flex items-start flex-col justify-center  space-y-8'>
-        <h1 className=' text-6xl font-bold flex justify-between text-[#CD853F] items-center pl-14'>Miri Michaelson</h1>
-        <h1 className=' text-4xl font-bold flex justify-between text-[#f29547] items-center pl-14'>software engineer</h1>
+    <main className="tablet:flex min-h-screen h-screen items-center justify-between" onClick={overlayClick}>
+      <div className={`${bg} basis-1/2 tablet:h-full w-full  flex items-start flex-col justify-start  space-y-8`}>
+        <div className='ml-10 mt-5'>
+          <Image height={70} src={logo} alt="Miri"        
+            style={{
+                objectFit: "cover",
+                borderRadius: "100px",
+              }}
+          />
+        </div>
+        <div className='w-full flex justify-start h-[66%]'>
+              {/* <Image height={200} src={miri} alt="Miri"        
+              style={{
+                  objectFit: "cover",
+                  borderRadius: "100px",
+                  marginLeft: '50px'
+                }}
+              /> */}
+        {/* </div> */}
+          <div className=" absolute flex phone:h-[88%] laptop:h-[66%]">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              strokeWidth={1.5} 
+              stroke="#e05d48" 
+              // w-20 for side bit, 30 for big line
+              className="w-20">
+              <path className="animate-[move_100s_linear_infinite]" strokeLinecap="round" strokeLinejoin="round" d="M19 30l-6  0l-6 6V9a" />
+            </svg>
+          </div>
+          <div className='flex flex-col justify-center phone:h-[30rem] phone:ml-[20x]  tablet:h-full'>
+            <h1 className={`phone:text-5xl tablet:text-6xl font-bold flex justify-between ${header1} items-center phone:pl-[18px] tablet:pl-14`}>Miri Michaelson</h1>
+            <h1 className={`text-4xl font-bold flex justify-between ${header2} items-center pl-14`}>software engineer</h1>
+          </div>
+        </div>
       </div>
-      <div className='bg-[#FCC981] basis-1/2 h-full flex justify-center space-y-6 flex-col w-full pl-16'>
-        <SideBar title="Work experience" content={content} colour="bg-[#f6be39]"/>
-        <SideBar title="Volunteering" content={content} colour="bg-[#ffa866]"/>
-        <SideBar title="My journey & about me" content={content} colour="bg-[#f3994d]"/>
-        <SideBar title="Contact" content={content} colour="bg-[#d89585]"/>
-        <ExpandedContent/>
+      <div className={`${bg} basis-1/2 h-full w-full`}>
+        <div className={`${bg} h-full flex justify-center space-y-6 flex-col w-full pl-16`}>
+          <div className='fixed flex-none top-0 '>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="#e05d48"  className="w-[60rem] h-[60rem]">
+              <path className="animate-[move_300s_linear_infinite]"   strokeLinecap="round" strokeLinejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33" />
+            </svg>
+          </div>
+          <SideBar title="professional experience and volunteering" content={experience} colour={`${sidePanelColour}`}/>
+          <SideBar title="tech stack" content={stack} colour={`${sidePanelColour}`}/>
+          <SideBar title="my journey & about me" content={aboutMeContent} colour={`${sidePanelColour}`}/>
+          <SideBar title="contact & downloadable cv" content={contactContent} colour={`${sidePanelColour}`}/>
+        </div>
+          <ExpandedContent/>
       </div>
     </main>
   )
